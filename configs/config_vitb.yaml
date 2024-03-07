@@ -29,21 +29,18 @@ MODEL:
   patch_embed_fun: 'conv3d'
 
 ADNI1:
-  dataroot: "/home/qasymjomart/uda/data/ADNI1_preprocessed_arranged/"
-  labelsroot: "/home/qasymjomart/uda/data/ADNI1_15T_UNIQUE.csv"
-  return_slice: False
+  dataroot: "./ADNI1_preprocessed_arranged/*/hdbet_*[!mask].nii.gz"
+  labelsroot: "./data/ADNI1_15T_UNIQUE.csv"
   mode: 'training'
 
 ADNI2:
-  dataroot: "/home/qasymjomart/uda/data/ADNI2/"
-  labelsroot: "/home/qasymjomart/uda/data/adni2_unique_sorted_13022023.csv"
-  view: 'sagittal'
+  dataroot: "./data/ADNI2/*/hdbet_*[!mask].nii.gz"
+  labelsroot: "./data/adni2_unique_sorted_13022023.csv"
   mode: 'training'
 
 OASIS3:
-  dataroot: "/home/qasymjomart/uda/data/OASIS3/scans/*/*/"
-  labelsroot: "/home/qasymjomart/uda/data/OASIS3_CLOSEST_LABELS.csv"
-  return_slice: False
+  dataroot: "./OASIS3/scans/*/*/*/hdbet*[!mask].nii.gz"
+  labelsroot: "./data/OASIS3_CLOSEST_LABELS_ONLY_HEALTHY.csv"
   mode: 'training'
 
 DATALOADER:

@@ -1,12 +1,7 @@
 """
 
-@qasymjomart
-
 This file imports three MRI datasets:
 ADNI1, ADNI2, and OASIS3
-
-The main backbone is borrowed from my previous paper:
-https://github.com/qasymjomart/ssl_jigsaw_hipposeg
 
 """
 

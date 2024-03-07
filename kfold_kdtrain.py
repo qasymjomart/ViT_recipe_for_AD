@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun May 28 2023
-
-@author: qasymjomart
 """
 
 from __future__ import print_function, division

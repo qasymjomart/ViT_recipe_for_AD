@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jul 22 17:17:00 2021
-
-@author: qasymjomart
-
 Based on https://www.kaggle.com/bigironsphere/loss-function-library-keras-pytorch
 """
 

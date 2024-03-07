@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 8 2023
-
-@author: qasymjomart
 """
+
 
 from __future__ import print_function, division
 import numpy as np

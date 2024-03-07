@@ -2,8 +2,6 @@
 
 Weight initialization functions for Vision_Transformer
 
-@qasymjomart
-
 Credits to timm package
 
 """

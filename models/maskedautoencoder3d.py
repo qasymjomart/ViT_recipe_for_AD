@@ -3,8 +3,6 @@
 
 Based primarily on original implementation on https://github.com/facebookresearch/mae/blob/main/models_mae.py
 
-@qasymjomart
-
 """
 import numpy as np
 import math

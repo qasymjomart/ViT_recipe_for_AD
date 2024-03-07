@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Sep 22 16:53:30 2017
-
-from @author: bbrattol
-
-updated and upgraded by @qasymjomart
 """
 import os
 import glob

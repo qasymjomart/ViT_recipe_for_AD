@@ -34,33 +34,33 @@ MODEL:
   norm_pix_loss: False
 
 SYNTH1:
-  dataroot: "/SSD/qasymjomart/synth_mri/dataset_1/med-ddpm/image/*.nii.gz"
+  dataroot: "./synth_mri/dataset_1/med-ddpm/image/*.nii.gz"
 
 SYNTH2:
-  dataroot: "/SSD/qasymjomart/synth_mri/dataset_2/dataset_2/image/*.nii.gz"
+  dataroot: "./synth_mri/dataset_2/dataset_2/image/*.nii.gz"
 
 BRATS2023:
-  dataroot: "/SSD/qasymjomart/BRATS2023/ASNR-MICCAI-BraTS2023-GLI-Challenge-TrainingData/*/*t1n.nii.gz"
+  dataroot: ".//BRATS2023/ASNR-MICCAI-BraTS2023-GLI-Challenge-TrainingData/*/*t1n.nii.gz"
 
 IXI:
-  dataroot: "/SSD/qasymjomart/IXI-T1/hdbet/IXI*/*T1.nii.gz"
+  dataroot: "./IXI-T1/hdbet/IXI*/*T1.nii.gz"
 
 HCP:
-  dataroot: "/SSD/qasymjomart/HCP/hdbet/*/hdbet_n4*1.nii.gz"
+  dataroot: "./HCP/hdbet/*/hdbet_n4*1.nii.gz"
 
 ADNI1:
-  dataroot: "/SSD/qasymjomart/uda/data/ADNI1_preprocessed_arranged/*/hdbet_*[!mask].nii.gz"
-  labelsroot: "/SSD/qasymjomart/uda/data/ADNI1_15T_UNIQUE.csv"
+  dataroot: "./ADNI1_preprocessed_arranged/*/hdbet_*[!mask].nii.gz"
+  labelsroot: "./data/ADNI1_15T_UNIQUE.csv"
   mode: 'training'
 
 ADNI2:
-  dataroot: "/SSD/qasymjomart/uda/data/ADNI2/*/hdbet_*[!mask].nii.gz"
-  labelsroot: "/SSD/qasymjomart/uda/data/adni2_unique_sorted_13022023.csv"
+  dataroot: "./data/ADNI2/*/hdbet_*[!mask].nii.gz"
+  labelsroot: "./data/adni2_unique_sorted_13022023.csv"
   mode: 'training'
 
 OASIS3:
-  dataroot: "/SSD/qasymjomart/uda/data/OASIS3/scans/*/*/*/hdbet*[!mask].nii.gz"
-  labelsroot: "/SSD/qasymjomart/uda/data/OASIS3_CLOSEST_LABELS_ONLY_HEALTHY.csv"
+  dataroot: "./OASIS3/scans/*/*/*/hdbet*[!mask].nii.gz"
+  labelsroot: "./data/OASIS3_CLOSEST_LABELS_ONLY_HEALTHY.csv"
   mode: 'training'
 
 DATALOADER:
