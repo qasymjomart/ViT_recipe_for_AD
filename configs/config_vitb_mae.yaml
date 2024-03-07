@@ -1,0 +1,81 @@
+TRAINING:
+  CUDA_DEVICE_ORDER: 'PCI_BUS_ID'
+  USE_GPU: True
+  EPOCHS: 50
+  CHECKPOINT: './checkpoints/'
+  LOGGING_PERIOD: 200
+  LOGGING_PATH: './logs/'
+  EARLY_STOPPING: False
+  EARLY_STOPPING_DELTA: 0.02
+  EARLY_STOPPING_PATIENCE: 10
+  CHECKPOINT_TYPE: None
+  LAYERWISE_LR_DECAY: 0.75
+
+TESTING:
+  USE_GPU: True
+
+MODEL:
+  TYPE: 'ViT3D'
+  img_size: [128,128,128]
+  patch_size: 16
+  in_chans: 1
+  n_classes: None
+  embed_dim: 768
+  depth: 12
+  n_heads: 12
+  mlp_ratio: 4.0
+  qkv_bias: True
+  drop_path_rate: 0.1
+  p: 0.
+  attn_p: 0.1
+  global_avg_pool: False
+  pos_embed_type: 'learnable'
+  patch_embed_fun: 'conv3d'
+
+ADNI1:
+  dataroot: "/SSD/qasymjomart/uda/data/ADNI1_preprocessed_arranged/"
+  labelsroot: "/SSD/qasymjomart/uda/data/ADNI1_15T_UNIQUE.csv"
+  mode: 'training'
+
+ADNI2:
+  dataroot: "/SSD/qasymjomart/uda/data/ADNI2/"
+  labelsroot: "/SSD/qasymjomart/uda/data/adni2_unique_sorted_13022023.csv"
+  mode: 'training'
+
+OASIS3:
+  dataroot: "/SSD/qasymjomart/uda/data/OASIS3/scans/*/*/"
+  labelsroot: "/SSD/qasymjomart/uda/data/OASIS3_CLOSEST_LABELS.csv"
+  mode: 'training'
+
+DATALOADER:
+  TRAIN_TEST_SPLIT_PATH: "./train_test_split/"
+  BATCH_SIZE: 4
+  NUM_WORKERS: 0
+  train_size: 'all'
+
+SOLVER:
+  optimizer: 'AdamW'
+  lr: 0.0001
+  weight_decay: 0.0001
+  beta1: 0.9
+  beta2: 0.999
+  scheduler: 'cosine'
+  t_initial: 30
+  min_lr: 0.000005
+  warmup_lr: 0.000006
+  warmup_epochs: 5
+  decay_epochs: 50
+  cooldown_epochs: 10
+  decay_rate: 0.1
+  cycle_decay: 0.1
+  cycle_limit: 1
+  alpha: 0.99
+  momentum: 0
+
+TRANSFORMS:
+  spacing: [1.75, 1.75, 1.75]
+  resize: [128,128,128]
+  orientation: "RAS"
+  normalize_non_zero: True
+  cache_dir_train: None
+  cache_dir_test: None

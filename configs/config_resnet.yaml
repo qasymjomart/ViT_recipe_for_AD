@@ -1,0 +1,69 @@
+TRAINING:
+  CUDA_DEVICE_ORDER: 'PCI_BUS_ID'
+  USE_GPU: True
+  EPOCHS: 50
+  CHECKPOINT: './checkpoints/'
+  LOGGING_PERIOD: 200
+  LOGGING_PATH: './logs/'
+  CHECKPOINT_PERIOD: 500
+  EARLY_STOPPING: False
+  EARLY_STOPPING_DELTA: 0.00001
+  EARLY_STOPPING_PATIENCE: 5
+  CHECKPOINT_TYPE: None
+
+TESTING:
+  USE_GPU: True
+
+MODEL:
+  TYPE: 'ResNet152'
+  img_size: [128,128,128]
+  in_chans: 1
+  n_classes: None
+
+ADNI1:
+  dataroot: "/SSD/qasymjomart/uda/data/ADNI1_preprocessed_arranged/"
+  labelsroot: "/SSD/qasymjomart/uda/data/ADNI1_15T_UNIQUE.csv"
+  return_slice: False
+  mode: 'training'
+
+ADNI2:
+  dataroot: "/SSD/qasymjomart/uda/data/ADNI2/"
+  labelsroot: "/SSD/qasymjomart/uda/data/adni2_unique_sorted_13022023.csv"
+  return_slice: False
+  mode: 'training'
+
+OASIS3:
+  dataroot: "/SSD/qasymjomart/uda/data/OASIS3/scans/*/*/"
+  labelsroot: "/SSD/qasymjomart/uda/data/OASIS3_CLOSEST_LABELS.csv"
+  return_slice: False
+  mode: 'training'
+
+DATALOADER:
+  TRAIN_TEST_SPLIT_PATH: "./train_test_split/"
+  BATCH_SIZE: 4
+  NUM_WORKERS: 0
+
+SOLVER:
+  optimizer: 'AdamW'
+  lr: 0.00002
+  weight_decay: 0.001
+  beta1: 0.9
+  beta2: 0.999
+  scheduler: 'cosine'
+  t_initial: 30
+  min_lr: 0.00001
+  warmup_lr: 0.000006
+  warmup_epochs: 5
+  decay_epochs: 50
+  cooldown_epochs: 10
+  decay_rate: 0.1
+  cycle_decay: 0.1
+  cycle_limit: 1
+
+TRANSFORMS:
+  spacing: [1.75, 1.75, 1.75]
+  resize: [128, 128, 128]
+  orientation: "RAS"
+  normalize_non_zero: True
+  cache_dir_train: None
+  cache_dir_test: None

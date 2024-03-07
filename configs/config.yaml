@@ -1,0 +1,64 @@
+TRAINING:
+  CUDA_DEVICE_ORDER: 'PCI_BUS_ID'
+  USE_GPU: True
+  EPOCHS: 70
+  CHECKPOINT: './checkpoints/'
+  LOGGING_PERIOD: 200
+  LOGGING_PATH: './logs/'
+  CHECKPOINT_PERIOD: 500
+  EARLY_STOPPING: False
+  EARLY_STOPPING_DELTA: 0.00001
+  EARLY_STOPPING_PATIENCE: 5
+
+TESTING:
+  USE_GPU: True
+
+MODEL:
+  TYPE: 'ViT3D'
+  img_size: [128,128,128]
+  patch_size: 16
+  in_chans: 1
+  n_classes: None
+  embed_dim: 768
+  depth: 12
+  n_heads: 12
+  mlp_ratio: 4.0
+  qkv_bias: True
+  p: 0.1
+  attn_p: 0.1
+  patch_embed_fun: 'unet3d'
+
+ADNI1:
+  dataroot: "/home/qasymjomart/uda/data/ADNI1_preprocessed_arranged/"
+  labelsroot: "/home/qasymjomart/uda/data/ADNI1_15T_UNIQUE.csv"
+  return_slice: False
+  mode: 'training'
+
+ADNI2:
+  dataroot: "/home/qasymjomart/uda/data/ADNI2/"
+  labelsroot: "/home/qasymjomart/uda/data/adni2_unique_sorted_13022023.csv"
+  view: 'sagittal'
+  mode: 'training'
+
+OASIS3:
+  dataroot: "/home/qasymjomart/uda/data/OASIS3/scans/*/*/"
+  labelsroot: "/home/qasymjomart/uda/data/OASIS3_CLOSEST_LABELS.csv"
+  return_slice: False
+  mode: 'training'
+
+DATALOADER:
+  TRAIN_TEST_SPLIT_PATH: "./train_test_split/"
+  BATCH_SIZE: 1
+  NUM_WORKERS: 8
+
+SOLVER:
+  optimizer: 'AdamW'
+  lr: 0.00001
+  weight_decay: 0.3
+
+TRANSFORMS:
+  spacing: [1.75, 1.75, 1.75]
+  resize: [128, 128, 128]
+  orientation: "RAS"
+  cache_dir_train: None
+  cache_dir_test: None

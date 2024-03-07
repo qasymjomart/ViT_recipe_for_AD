@@ -1,0 +1,85 @@
+TRAINING:
+  CUDA_DEVICE_ORDER: 'PCI_BUS_ID'
+  USE_GPU: True
+  EPOCHS: 1000
+  CHECKPOINT: './checkpoints/'
+  LOGGING_PERIOD: 200
+  LOGGING_PATH: './logs/'
+  EARLY_STOPPING: False
+  EARLY_STOPPING_DELTA: 0.00001
+  EARLY_STOPPING_PATIENCE: 5
+  CHECKPOINT_TYPE: None
+
+TESTING:
+  USE_GPU: True
+
+MODEL:
+  TYPE: 'MaskedAutoencoderViT3D'
+  img_size: [128,128,128]
+  patch_size: 16
+  in_chans: 1
+  n_classes: None
+  embed_dim: 768
+  depth: 12
+  n_heads: 12
+  mlp_ratio: 4.0
+  qkv_bias: True
+  drop_path_rate: 0.
+  p: 0.1
+  attn_p: 0.1
+  patch_embed_fun: 'conv3d'
+  decoder_embed_dim: 576
+  decoder_depth: 8
+  decoder_num_heads: 16
+  norm_pix_loss: False
+
+SYNTH1:
+  dataroot: "/SSD/qasymjomart/synth_mri/dataset_1/med-ddpm/image/*.nii.gz"
+
+SYNTH2:
+  dataroot: "/SSD/qasymjomart/synth_mri/dataset_2/dataset_2/image/*.nii.gz"
+
+BRATS2023:
+  dataroot: "/SSD/qasymjomart/BRATS2023/ASNR-MICCAI-BraTS2023-GLI-Challenge-TrainingData/*/*t1n.nii.gz"
+
+IXI:
+  dataroot: "/SSD/qasymjomart/IXI-T1/hdbet/IXI*/*T1.nii.gz"
+
+HCP:
+  dataroot: "/SSD/qasymjomart/HCP/hdbet/*/hdbet_n4*1.nii.gz"
+
+ADNI1:
+  dataroot: "/SSD/qasymjomart/uda/data/ADNI1_preprocessed_arranged/*/hdbet_*[!mask].nii.gz"
+  labelsroot: "/SSD/qasymjomart/uda/data/ADNI1_15T_UNIQUE.csv"
+  mode: 'training'
+
+ADNI2:
+  dataroot: "/SSD/qasymjomart/uda/data/ADNI2/*/hdbet_*[!mask].nii.gz"
+  labelsroot: "/SSD/qasymjomart/uda/data/adni2_unique_sorted_13022023.csv"
+  mode: 'training'
+
+OASIS3:
+  dataroot: "/SSD/qasymjomart/uda/data/OASIS3/scans/*/*/*/hdbet*[!mask].nii.gz"
+  labelsroot: "/SSD/qasymjomart/uda/data/OASIS3_CLOSEST_LABELS_ONLY_HEALTHY.csv"
+  mode: 'training'
+
+DATALOADER:
+  BATCH_SIZE: 32
+  NUM_WORKERS: 8
+
+SOLVER:
+  optimizer: 'AdamW'
+  lr: 0.0001
+  weight_decay: 0.0001
+  warmup_epochs: 40
+  min_lr: 0.0000001
+  beta1: 0.9
+  beta2: 0.95
+
+TRANSFORMS:
+  spacing: [1.75, 1.75, 1.75]
+  resize: [128,128,128]
+  normalize_non_zero: True
+  orientation: "RAS"
+  cache_dir_train: None
+  cache_dir_test: None
