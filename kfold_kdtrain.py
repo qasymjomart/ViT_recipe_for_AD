@@ -231,7 +231,7 @@ if __name__ == '__main__':
                                         min_delta=cfg['TRAINING']['EARLY_STOPPING_DELTA'])   
             
         # Load teacher model
-        teacher_model_config = yaml.load(open('/home/qasymjomart/uda/damit_miccai/configs/config_resnet.yaml', 'rb'), Loader=yaml.FullLoader)
+        teacher_model_config = yaml.load(open('./configs/config_resnet.yaml', 'rb'), Loader=yaml.FullLoader)
         teacher_model_config['MODEL']['n_classes'] = len(args.classes_to_use)
         
         teacher_model = make_vanilla_model(
@@ -240,7 +240,7 @@ if __name__ == '__main__':
         )
         
         teacher_pretrained_path = glob\
-            .glob(f'/home/qasymjomart/uda/damit_miccai/checkpoints/BEST_MODEL_resnet152_32_3d_cnad_01_{args.source}_mode_{args.mode}_seed_{args.seed}_fold_{i}*pth.tar')
+            .glob(f'./checkpoints/BEST_MODEL_resnet152_32_3d_cnad_01_{args.source}_mode_{args.mode}_seed_{args.seed}_fold_{i}*pth.tar')
             
         assert len(teacher_pretrained_path) == 1, f'No teacher model found for fold {i}'
         
