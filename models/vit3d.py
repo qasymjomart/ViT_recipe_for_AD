@@ -23,10 +23,6 @@ import torch.nn.functional as F
 
 import torchvision
 
-# from .resnetv2 import ResNetV2
-from .convnets import UNet3DEncoder
-from .pe import PatchEmbed, PatchEmbed3X, ProgressivePatchEmbed, ProgressivePatchEmbed3D
-
 from utils.weight_init import trunc_normal_, init_weights_vit_timm, get_init_weights_vit, named_apply
 from utils.utils import get_3d_sincos_pos_embed
 
@@ -92,29 +88,6 @@ class PatchEmbed3D(nn.Module):
                 out_channels=embed_dim,
                 kernel_size=patch_size,
                 stride=patch_size
-            )
-        elif patch_embed_fun == 'unet3d':
-            self.proj = UNet3DEncoder(
-                in_chans=[[1, 32, 64], [64, 64, 128], [128, 128, 256], [256, 256, embed_dim]],
-                num_blocks=4,
-                kernel_size=2,
-                stride=1,
-                padding=0,
-                bias=False
-            )
-        elif patch_embed_fun == 'mype3d':
-            self.proj = nn.Sequential(
-                nn.Conv3d(1, embed_dim//4, 5),
-                nn.BatchNorm3d(embed_dim//4),
-                nn.ReLU(),
-                nn.AvgPool3d(3),
-                nn.Conv3d(embed_dim//4, embed_dim//2, 5),
-                nn.BatchNorm3d(embed_dim//2),
-                nn.ReLU(),
-                nn.AvgPool3d(3),
-                nn.Conv3d(embed_dim//2, embed_dim, 5),
-                nn.BatchNorm3d(embed_dim),
-                nn.ReLU()
             )
         
         out = self.proj(sample_torch)
@@ -359,44 +332,14 @@ class Vision_Transformer3D(nn.Module):
                 ):
         super().__init__()
 
-        if patch_embed_fun in ['conv3d', 'unet3d', 'mype3d']:
+        if patch_embed_fun in ['conv3d']:
             self.patch_embed = PatchEmbed3D(
                 img_size=img_size,
                 patch_size=patch_size,
                 embed_dim=embed_dim,
                 patch_embed_fun=patch_embed_fun
             )
-        elif patch_embed_fun in ['conv2d', 'resnet502d', 'unet2d', 'mype2d']:
-            self.patch_embed = PatchEmbed(
-                img_size=img_size,
-                patch_size=patch_size,
-                embed_dim=embed_dim,
-                patch_embed_fun=patch_embed_fun,
-                use_separation=use_separation
-            )
-        elif patch_embed_fun in ['3xconv2d', '3xmype2d']:
-            self.patch_embed = PatchEmbed3X(
-                img_size=img_size,
-                patch_size=patch_size,
-                embed_dim=embed_dim,
-                patch_embed_fun=patch_embed_fun,
-                use_separation=use_separation
-            )
-        elif patch_embed_fun in ['progressive_conv2d']:
-            self.patch_embed = ProgressivePatchEmbed(
-                img_size=img_size,
-                patch_size=16,
-                embed_dim=embed_dim,
-                patch_embed_fun=patch_embed_fun
-            )
-        elif patch_embed_fun in ['progressive_conv3d']:
-            self.patch_embed = ProgressivePatchEmbed3D(
-                img_size=img_size,
-                patch_size=16,
-                embed_dim=embed_dim,
-                patch_embed_fun=patch_embed_fun
-            )
-
+            
         self.cls_token = nn.Parameter(torch.rand(1, 1, embed_dim)) if global_avg_pool == False else None
         embed_len = self.patch_embed.n_patches if global_avg_pool else 1 + self.patch_embed.n_patches
         self.pos_embed = nn.Parameter(

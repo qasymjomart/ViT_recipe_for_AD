@@ -254,7 +254,6 @@ class MaskedAutoencoderViT3D(nn.Module):
 
 
 
-
 class MaskedAutoencoderDeiT3D(nn.Module):
     def __init__(self, 
                  img_size=[128,128,128], 
