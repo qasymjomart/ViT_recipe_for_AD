@@ -63,4 +63,17 @@ if msg.unexpected_keys:
 ```
 
 ## How to cite:
-This section will come out after MICCAI-2024 review
+
+If you use this repository in your work, please cite the following paper:
+
+```bibtex
+@InProceedings{ViT_recipe_for_AD,
+  author = {Kunanbayev, Kassymzhomart and Shen, Vyacheslav and Kim, Dae-Shik},
+  title = {Training ViT with Limited Data for Alzheimer’s Disease Classification: an Empirical Study},
+  booktitle = {Proceedings of Medical Image Computing and Computer Assisted Intervention -- MICCAI 2024},
+  year = {2024},
+  publisher = {Springer Nature Switzerland},
+  volume = {LNCS 15012},
+  month = {October},
+  page = {pending}
+}
